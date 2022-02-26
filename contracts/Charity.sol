@@ -24,7 +24,7 @@ contract Charity {
         // is the value more than 0
         require(msg.value > 0, "You need to spend more!");
 
-        // is this address donated before
+        // did this address donated before
         if (addressToAmount[msg.sender] == 0) {
             // if not, adds this address to 'donaters' array
             donaters.push(msg.sender);
