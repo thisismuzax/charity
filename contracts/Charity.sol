@@ -19,27 +19,19 @@ contract Charity {
         owner = msg.sender;
     }
 
-    // function to check whether donated by this address before
-    function contains(address donater) private view returns (bool) {
-        for (uint256 i = 0; i < donaters.length; i++) {
-            if (donater == donaters[i]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // function to donate some amount of coins
+    // function to donate some amount of coins // 110564
     function donate() external payable {
         // is the value more than 0
         require(msg.value > 0, "You need to spend more!");
-        // if yes, add to mapping
-        addressToAmount[msg.sender] += msg.value;
-        // Does 'donaters' array contain this address
-        if (contains(msg.sender) == false) {
+
+        // is this address donated before
+        if (addressToAmount[msg.sender] == 0) {
             // if not, adds this address to 'donaters' array
             donaters.push(msg.sender);
         }
+
+        addressToAmount[msg.sender] += msg.value;
+
         // adds an amount to total
         totalDonations += msg.value;
     }
