@@ -2,8 +2,6 @@
 
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract Charity {
     // mapping to store which address donated how much coins
     mapping(address => uint256) private addressToAmount;
